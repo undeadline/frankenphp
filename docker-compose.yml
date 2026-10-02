@@ -1,0 +1,22 @@
+services:
+
+  php:
+    build:
+      context: .
+    expose:
+      - 8080
+    volumes:
+      - ./:/app
+      - ./Caddyfile:/etc/frankenphp/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - proxy
+
+volumes:
+  caddy_config:
+  caddy_data:
+
+networks:
+  proxy:
+    external: true
